@@ -1,0 +1,270 @@
+/*from most broad to most specific
+body => individual page classes/id's => specifc tags*/
+
+:root {
+    --font-color: 255, 255, 255;
+    --text-shadow: 2px 3px 5px rgba(0, 0, 0,.7);
+    /* --primary-color: #589bff;  */
+    --primary-color: #242d37;
+    --t1: #95BBE6;
+    --t2: #2b4d85ff;
+    --t3: #5788beff;
+    --t4: rgb(93, 171, 240);
+    --t5: #e1eaf7ff;
+
+}
+
+@keyframes textReveal{
+    from{
+        opacity: 0;
+        transform: translateY(-2%);
+
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@keyframes slideDown {
+    from{
+        opacity: 0;
+        transform: translateY(-300%);
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+@keyframes initialReveal {
+    from{
+        opacity: 0;
+        
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+@keyframes initialSlideDown {
+    from{
+        transform: translateY(-370%);
+        
+    }
+    to{
+        transform: translateY(-200%);
+    }
+}
+@keyframes gallerySlideUp {
+    0%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(-100%);
+    }
+}
+@keyframes gallerySlideDown {
+    from{
+        transform: translateY(0%) /*relative 0%*/
+    }
+    to{
+        transform: translateY(100%);
+    }
+}
+
+.loader{
+    z-index: 9999;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    font-size: 20px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    height: 100vh;
+    width: 100vw;
+    transition: all 1s ease;
+    position: absolute;
+}
+body {
+    background-color: black;
+    height: 100vh;
+    overflow: hidden;
+    margin-left: -1px;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+
+.backgroundGallery {
+    z-index: -1;
+    position: absolute;
+    display: flex;
+    height: 100vh;
+    overflow: none;
+    gap: .1vw;
+    opacity: .34;
+}
+
+
+.galleryThird {
+    display: flex;
+    flex-direction: column;
+    gap: .1vw;
+    opacity: 0;
+    /* for the inital slide animatino, this needs to be down already*/
+
+}
+.galleryThird img{
+    border: .5px solid rgba(255, 255, 255, 0.504);
+    width: 33.333vw;
+    height: 75vh;
+    object-fit: cover;
+}
+
+.galleryLoaded:nth-child(1){
+    animation: initialReveal 2s 2s cubic-bezier( 0, -0.01, 0.22, 1 ) forwards;
+
+}
+.galleryLoaded:nth-child(2){
+    transform: translateY(-300%);
+
+    animation: initialReveal 2s 2.3s cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
+
+}
+.galleryLoaded:nth-child(3){
+    animation: initialReveal 1.2s 2.6s cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
+}
+#leftGallery {
+}
+
+#middleGallery {
+}
+
+#rightGallery{
+
+}
+
+
+#leftGallery > *{ /* selcting both first and second column*/
+    display: flex;
+    flex-direction: column;
+    animation: gallerySlideUp 120s linear infinite;
+
+}
+#middleGallery > *{ /* selcting both first and second column*/
+    display: flex;
+    flex-direction: column;
+    animation: gallerySlideDown 200s 1.7s linear infinite;
+
+}
+#rightGallery > *{ /* selcting both first and second column*/
+    display: flex;
+    flex-direction: column;
+    animation: gallerySlideUp 220s 1s linear infinite;
+}
+
+.navbar{
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+    color: white;
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: sans-serif;
+    /* box-shadow: 0px 0px 10px black; */
+
+}
+.navbarItem {
+    transform: translateY(-300%);
+    text-shadow: 0px 3px 5px black;
+
+}
+.navbarLoaded .navbarItem:nth-child(1){
+    animation: slideDown 2s 5s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(2){
+    animation: slideDown 2s 5.1s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(3){
+    animation: slideDown 2s 5.2s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(4){
+    animation: slideDown 2s 5.4s forwards;
+}
+
+
+
+.navbarItem:hover {
+    cursor: pointer;
+    text-shadow: 0px 3px 5px black;
+}
+
+.showText {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: auto;
+    opacity: 0;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    transition: all 1s ease;
+}
+mark {
+    background-color: black ;
+}
+.textLoaded {
+    animation: textReveal 2s 4s forwards; 
+}
+
+.hideText {display: none;}
+
+.titleText{
+    font-size: 90px;
+    color: white;
+    display:flex;
+    font-family: "Montserrat",Impact, sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-optical-sizing: auto;
+    text-shadow: 0px 5px 2px rgba(0, 3, 4, 0.611);
+}
+
+.subText{
+    font-size: 25px;
+    color: white;
+    font-family: sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif, Helvetica, sans-serif;
+    text-align: center;
+    text-shadow: 0px 5px 2px rgba(0, 0, 0, 0.33);
+
+}
+
+
+.watermark{
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 12px
+    
+
+}
+
+a{
+    color: white;
+}
+a:visited{
+    opacity: .9
+}
+a:hover{
+    opacity: .8;
+    cursor: pointer;
+}
+
