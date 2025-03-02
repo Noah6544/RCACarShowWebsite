@@ -1,0 +1,547 @@
+/*from most broad to most specific
+body => individual page classes/id's => specifc tags
+or that was the plan anyways, I got lazy and threw them in kinda randomly lol*/
+
+:root {
+    --font-color: 255, 255, 255;
+    --text-shadow: 2px 3px 5px rgba(0, 0, 0,.7);
+    /* --primary-color: #589bff;  */
+    --primary-color: #242d37;
+    --t1: #95BBE6;
+    --t2: #2b4d85ff;
+    --t3: #5788beff;
+    --t4: rgb(93, 171, 240);
+    --t5: #e1eaf7ff;
+
+}
+
+/*body, html {*/
+/*    height: 100vh;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100dvh; /* THIS IS THE SECRET SAUCE: because of the mobile little bottom navbars, the full vh doens't take it into account, this does!*/
+    text-align: left;
+    position: fixed;
+    background-color: black;
+
+}
+
+@keyframes textReveal{  /* why not just use 'reverse fadeOut forwards'? because display none ruins the absoltue poistionig. */
+    from{
+        opacity: 0;
+        position: translate(-50%,-50%);
+
+
+    }
+    to{
+        opacity: 1;
+        transform: translate(-50%,-50%);
+
+    }
+}
+
+@keyframes fadeOut {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes slideDown {
+    from{
+        opacity: 0;
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+@keyframes initialReveal {
+    from{
+        opacity: 0;
+        
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+@keyframes initialSlideDown {
+    from{
+        transform: translateY(-370%);
+        
+    }
+    to{
+        transform: translateY(-200%);
+    }
+}
+@keyframes gallerySlideUp {
+    0%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(-100%);
+    }
+}
+@keyframes gallerySlideDown {
+    from{
+        transform: translateY(0%) /*relative 0%*/
+    }
+    to{
+        transform: translateY(100%);
+    }
+}
+@keyframes appear {
+	0% {
+		transform: translate(-50%, -50%) scale(0);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+
+
+.loader{
+    z-index: -1;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    font-size: 20px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    height: 100vh;
+    width: 100vw;
+    transition: all 1s ease;
+    position: absolute;
+    transition: all 2s ease;
+}
+
+.loaderLoaded {
+
+    animation: fadeOut .5s linear forwards; /* 2, 2.3, 2.6 goign down */
+}
+
+
+
+.backgroundGallery {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width:100%;
+    box-shadow: 0px 10px 550px -0px rgba(0, 0, 0, 0.9) inset;
+    -webkit-box-shadow:  0px 10px 550px -0px rgba(0, 0, 0, 0.9) inset;
+    -moz-box-shadow: 0px 10px 550px -0px rgba(0, 0, 0, 0.9) inset;
+    overflow: visible; /* put this to stop individual images from oveflowing */
+}
+
+
+.galleryContainer {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: auto;
+    max-height: 400px;
+}
+.galleryContainer img {
+    border-radius: 15px;
+    border: 2px solid white;
+    margin: 10px;
+    width: 300px;
+}
+.galleryThird {
+    display: flex;
+    flex-direction: column;
+    gap: .1vw;
+    opacity: 0;
+    /* for the inital slide animatino, this needs to be down already*/
+   
+
+
+.Column img{
+    filter: blur(.4px);
+    opacity: .45;
+    transition: all .25s ease;
+    box-shadow: 0px 1px 27px -5px rgba(0,0,0,0.9) inset;
+    -webkit-box-shadow: 0px 1px 27px -5px rgba(0,0,0,0.9) inset;
+    -moz-box-shadow: 0px 1px 27px -5px rgba(0,0,0,0.9) inset;
+}
+
+}
+.Column img:hover{
+    opacity: .4;
+}
+
+.galleryThird {
+    width: 50%;
+}
+.galleryThird img{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 1%;
+    object-fit: cover;
+    height: 45vh;
+}
+
+.galleryLoaded:nth-child(1){
+    animation: initialReveal  2s  .25s  cubic-bezier( 0, -0.01, 0.22, 1 ) forwards; /* 2s 1.7s | 1.7s 2s | 2.5s 2.3s */
+}
+.galleryLoaded:nth-child(2){
+    animation: initialReveal 1.7s .5s  cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
+}
+.galleryLoaded:nth-child(3){
+    animation: initialReveal 2.5s .75s cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
+}
+
+#middleGallery {
+    align-self: flex-end; /*instead of having all of that translatey-300% and stuff, this is juat position aboslute; bottom: 0, essentially but with flexbox!*/
+}
+
+#rightGallery{
+    display: none;
+}
+
+
+#leftGallery > *{ /* selcting both first and second column*/
+    display: flex;
+    flex-direction: column;
+    animation: gallerySlideUp 120s linear infinite;
+
+}
+#middleGallery > *{ /* selcting both first and second column*/
+    display: flex;
+
+    flex-direction: column;
+    animation: gallerySlideDown 200s .2s linear infinite; /* 12s, 200s, 220s */
+
+}
+#rightGallery > *{ /* selcting both first and second column*/
+    display: flex;
+    flex-direction: column;
+    animation: gallerySlideUp 220s .4s linear infinite;
+}
+
+.navbar{
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+    color: white;
+    font-size: 13px;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: "Montserrat", Impact, sans-serif;
+    font-style: italic;
+    font-weight: 100;
+    background-color: rgba(0, 0, 0, 0.651);
+    box-shadow: 0px 2px 15px 15px rgba(0, 0, 0, 0.651);
+
+}
+
+.navbarItem {
+    transform: translateY(-200%);
+    text-shadow: 0px 3px 5px black;
+    transition: all .25s ease;
+    padding: 10px;
+    border-radius: 20px;
+    /* background-color: rgba(66, 66, 66, 0.301); */
+    opacity: 0;
+}
+
+.navbarItem:hover {
+    color: rgba(255, 255, 255, 0.5); /* for some reason the opacity isn't working, using rgba to control alpha */
+    cursor: pointer;
+}
+
+.navbarLoaded .navbarItem:nth-child(1){
+    animation: slideDown 2s .5s forwards; /* 5 +0,1  delay, 2s duratoin*/
+}
+.navbarLoaded .navbarItem:nth-child(2){
+    animation: slideDown 2s .7s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(3){
+    animation: slideDown 2s .9s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(4){
+    animation: slideDown 2s 1.2s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(5){
+    animation: slideDown 2s 1.4s forwards;
+}
+
+.paymentOptionsContainer{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.paymentOption {
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.227);
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 10px rgba(131, 131, 131, 0.204);
+
+}
+
+.paymentOptionSelected{
+    background: rgba(255, 255, 255, 0.113);
+
+}
+
+
+#vehicleRegisterNavbar, #vendorRegisterNavbar, #sponsorRegisterNavbar{
+    white-space: break-word;
+    position: relative;
+    padding-left: 0px;
+    width: 100px;
+    justify-self: center;
+    text-align: center;
+}
+
+
+
+
+#registerNavbarButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+
+.showText {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+    opacity: 0;
+    -webkit-font-smoothing: antialiased;
+    transition: all 1s ease;
+      left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+mark {
+    background-color: black ;
+}
+.textLoaded {
+    animation: textReveal 2s .25s forwards; /* 2s 4s/6s before */
+}
+
+.hideText {display: none;}
+
+
+.titleText{
+    width: clamp(200px, 80vw, 1000px);
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    display: flex;
+    font-family: "Montserrat", Impact, sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    justify-content: center;
+    text-align: center;
+    
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.377);
+}
+#springIntoSummer {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    letter-spacing: 150%;
+    font-style: normal;
+    font-family: "Montserrat", Impact, sans-serif;
+    font-weight: 500;
+    align-items: center;
+    text-shadow: 0px 0px 15px rgba(164, 5, 5, 0.709);
+
+
+
+}
+#hostedBy{
+    font-size: 20px;
+    font-weight: 100;
+
+}
+#carShow {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#carShow img{
+    rotate: 5deg;
+}
+.textContainer {
+    display: flex;
+    padding: 50px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 2px;
+    font-family: sans-serif;
+    box-shadow: 0px 0px 55px 0px rgba(0, 0, 0, 0.998);
+    border-radius: 50px;
+    background-color: rgba(122, 122, 122, 0.032);
+    font-size: 13px;
+    overflow-y: scroll;
+}
+
+.subText{
+    width: clamp(200px, 90vw, 1000px);
+    overflow-y: auto;
+    color: white;
+    line-height: 110%;
+    font-family: sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif, Helvetica, sans-serif;
+    text-shadow: var(--text-shadow);
+    /* text-shadow: 0px 5px 2px rgba(0, 0, 0, 0.33); */
+}
+
+#aboutUs{
+    width: 75vw;
+    font-size: 12px;
+    height: 50%;
+    line-height: 120%;
+    overflow-y: auto;
+    text-align: left !important;
+
+
+}
+
+.subTitleText {
+    color: white;
+    padding: 2px;
+    font-family: sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif, Helvetica, sans-serif;
+}
+
+.subTextHeader {
+    font-size: 17px;
+    padding: 10px;
+
+}
+
+.dropdownShow { /* since there's no hover on mobile, we need to toggle the class */
+    color: rgba(255, 255, 255, 1); /* for some reason the opacity isn't working, using rgba to control alpha */
+    opacity: 1 !important; /*the important overwrites the parent class! */
+    transition: all .25s ease;
+    z-index: 2;
+}
+
+
+#registerList {
+    text-align: left;
+}
+
+#indexPage .subText {
+    text-align: center;
+}
+
+.watermark{
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 9px;
+    opacity: 0;
+    animation: reverse fadeOut 2s 7s linear forwards;
+
+}
+
+a:visited{
+    opacity: .9
+}
+a:hover{
+    opacity: .8;
+    cursor: pointer;
+}
+
+ul { 
+    list-style: none;
+}
+
+.FAQ {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    padding-bottom: 40px;
+    text-shadow: 0px 2px 15px rgb(0, 0, 0);
+    color: white;
+    font-size: 11px;
+    text-align: center;
+    opacity: 0;
+    animation: reverse fadeOut 2s 7s linear forwards;
+
+    
+}
+
+a{
+    color: rgb(132, 182, 234)
+}
+/*ARROW STUFF*/
+.dropdown{
+    z-index: 2;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    opacity: 0;
+    transition: all .25s ease;
+ 
+}
+.dropdownIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(60%);
+
+    height: 15px; 
+    transition: all .25s ease;
+}
+.dropdownRectangle {
+    width: 12px; 
+    height: 1px;
+    background-color: rgb(252, 252, 252);
+    border-radius: 20px;
+    position: absolute;
+}
+#leftRectangle{
+    rotate: 45deg;
+    transform: translate(-50%, 30%);
+}
+#rightRectangle{
+    rotate: -45deg;
+    transform: translate(50%,30%);
+}
+.dropdownIconWrapper{ 
+    padding: 22px 0px 15px 15px; /* top | right | bottom | left */
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    transition: all .25s ease;
+}

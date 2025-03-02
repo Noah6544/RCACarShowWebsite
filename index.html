@@ -2,82 +2,211 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./static/styles/styles.css" media="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <link rel="icon" href="./static/images/favicon.png">
+    <link rel="stylesheet" href="./static/styles/styles.css" media="screen and (min-width: 700px)">
+    <link rel="stylesheet" href="./static/styles/mobile.css" media="screen and (max-width: 699px)">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="./static/javascript/loader.js"></script>
+    <script src="./static/javascript/loader.js" defer></script>
     <script src="./static/javascript/script.js" defer></script>
 
-    <title>Rockdale Career Academy Car Show</title>
+    <title>RCA Car Show</title>
 </head>
 <body>
-    <div class="loader" id="loader">Loading...</div>
+    <div class="loader" id="loader">Starting Our Engines...</div>
 
-    <div class="backgroundGallery">
+    <div class="backgroundGallery" id="backgroundGallery">
         <div class="galleryThird" id="leftGallery">
 
-            <div class="firstColumn">
-                <img src="./static/images/car (1).png">
-                <img src="./static/images/car (2).png">
-                <img src="./static/images/car (3).png">
+            <div class="Column firstColumn">
+                <img src="./static/images/car images/new/2024_Car1.jpg">
+                <img src="./static/images/car images/new/2024_Car2.jpg">
+                <img src="./static/images/car images/new/2024_Car3.jpg">
             </div>
-            <div class="secondColumn">
-                <img src="./static/images/car (1).png">
-                <img src="./static/images/car (2).png">
-                <img src="./static/images/car (3).png">
+            <div class="Column secondColumn">
+                <img src="./static/images/car images/new/2024_Car4.jpg">
+                <img src="./static/images/car images/new/2024_Car5.jpg">
+                <img src="./static/images/car images/new/2024_Car6.jpg">
             </div>
 
         </div>
 
         <div class="galleryThird" id="middleGallery">
             
-            <div class="firstColumn">
-                <img src="./static/images/car (4).png">
-                <img src="./static/images/car (5).png">
-                <img src="./static/images/car (6).png">
+            <div class="Column firstColumn">
+                <img src="./static/images/car images/new/2024_Car7.jpg">
+                <img src="./static/images/car images/new/2024_Car8.png">
+                <img src="./static/images/car images/new/2024_Car10.jpg">
             </div>
-            <div class="secondColumn">
-                <img src="./static/images/car (4).png">
-                <img src="./static/images/car (5).png">
-                <img src="./static/images/car (6).png">
+            <div class="Column secondColumn">
+                <img src="./static/images/car images/new/2024_Car9.jfif">
+                <img src="./static/images/car images/new/2024_Car11.jfif">
+                <img src="./static/images/car images/new/2024_Car12.jfif">
             </div>
            
         </div>
 
         <div class="galleryThird" id="rightGallery">
 
-            <div class="firstColumn">
-                <img src="./static/images/car (8).png">
-                <img src="./static/images/car (10).png">
-                <img src="./static/images/car (13).png">
+            <div class="Column firstColumn">
+                <img src="./static/images/car images/new/2024_Car13.jfif">
+                <img src="./static/images/car images/new/2024_Car14.jfif">
+                <img src="./static/images/car images/new/2024_Car15.jfif">
             </div>
-            <div class="secondColumn">
-                <img src="./static/images/car (8).png">
-                <img src="./static/images/car (10).png">
-                <img src="./static/images/car (13).png">
+            <div class="Column secondColumn">
+                <img src="./static/images/car images/new/2024_Car16.jfif">
+                <img src="./static/images/car images/new/2024_Car17.jfif">
+                <img src="./static/images/car images/new/2024_Car18.jfif">
             </div>
         
         </div>
     </div>
     <div class="navbar" id="navbar">
+
         <div class="navbarItem" id="registerNavbar">
-            <div class="navbarText">Register</div>
-            <div class="hideText" id="registerPageInformation">
-                <div class="textContainer">    
-                    <div class="titleText">[Register Page Title]</div>
-                    <div class="subText">[Dummy Text Register Page]: First pay the $20 deposit <a href="" target="_blank">here.</a><br>Next, regsiter your vehicle you get from the registration page, <a href="" target="_blank">here.</a></div>
-                </div>   
+
+            <div class="navbarText" id="registerNavbarButton">Registration
+            <div class="dropdownIconWrapper">
+                <div class="dropdownIcon">
+                    <div class="dropdownRectangle" id="leftRectangle"></div>
+                    <div class="dropdownRectangle" id="rightRectangle"></div>
+                </div>
             </div>
         </div>
+            
+            <div class="dropdown" id="registerDropdown">
 
+            
+            <div class="navbarItem" id="vehicleRegisterNavbar">
+                <div class="navbarText">Vehicle</div>
+                <div class="hideText" id="vehicleRegisterPageInformation">
+                    
+                    <div class="textContainer">  
+                        <div class="titleText">Vehicle Registration</div>
+                        <div class="subTitleText">                        
+                            <h3>Important: All payments are <u>NON-REFUNDABLE</u></h3>
+                        </div>
+                        <div class="subText">
+                            Registration cost is $20 per vehicle.
+                            <br>You can pay either online or with cash upon arrival.
+                            <br>Follow the steps to register your vehicle(s) for the RCA Car Show.
+                            <br>
+                            <br>1) Register your vehicle in the RCA Car Show <a href="https://forms.office.com/r/9DmtDuSjuu" target="_blank">here.</a>
+                            <br>Make sure to complete a new form for each vehicle.
+                            <br>2) Pay online <a href="https://osp.osmsinc.com/RockdaleGA/BVModules/ProductTemplates/Bvc2013/Product.aspx?productid=SX106-88" target="_blank">here.</a>
+                            <br>
+                            <br>Otherwise, be prepared to pay IMMEDIATELY upon arrival at our booth.
+                            <br><i>You will not be allowed entry without paying the registration cost.</i>
+
+                        </div>
+              
+                    </div>   
+                </div>
+            </div>
+
+            <div class="navbarItem" id="sponsorRegisterNavbar">
+                <div class="navbarText">Sponsor</div>
+                <div class="hideText" id="sponsorRegisterPageInformation">
+
+                    <div class="textContainer">    
+                        <div class="titleText">Sponsor Registration</div>
+
+                    <div class="subTitleText">                        
+                        <h3>Important: All payments are <u>NON-REFUNDABLE</u></h3>
+                    </div>
+
+                    <div class="subText">
+                        Register to have your business advertised at the car show. 
+                        <br>Vendor booth registration is $40 per booth.
+                        <br>LIMITED SPOTS FOR FOOD VENDORS!* 
+                        <br><i>*Please contact Mr. Owens at towens1@rockdale.k12.ga.us if interested</i>
+                        <br>
+                        <br>Follow the steps to register your booth for the RCA Car Show.
+
+                        <div class="subText">1) Register to be a Vendor <a href="https://forms.office.com/r/d6SvWwFXCX" target="_blank">here.</a>
+                            <br>
+                            2) You MUST pay the vendor fee ONLINE <a href="https://osp.osmsinc.com/RockdaleGA/BVModules/ProductTemplates/Bvc2013/Product.aspx?productid=SX106-89" target="_blank">here.</a>
+                        </a></div>
+    
+                        </div>
+                    </div>   
+                </div>
+            </div>
+            
+            <div class="navbarItem" id="vendorRegisterNavbar">
+                <div class="navbarText">Vendor</div>
+                <div class="hideText" id="vendorRegisterPageInformation">
+
+                    <div class="textContainer">    
+                        <div class="titleText">Vendor Registration</div>
+
+                    <div class="subTitleText">                        
+                        <h3>Important: All payments are <u>NON-REFUNDABLE</u></h3>
+                    </div>
+
+                    <div class="subText">
+                        Register to have a booth space for: advertising, selling, etc.
+                        <br>Vendor booth registration is $40 per booth.
+                        <br>LIMITED SPOTS FOR FOOD VENDORS!* 
+                        <br><i>*Please contact Mr. Owens at towens1@rockdale.k12.ga.us if interested</i>
+                        <br>
+                        <br>Follow the steps to register your booth for the RCA Car Show.
+
+                        <div class="subText">1) Register to be a Vendor <a href="https://forms.office.com/r/d6SvWwFXCX" target="_blank">here.</a>
+                            <br>
+                            2) You MUST pay the vendor fee ONLINE <a href="https://osp.osmsinc.com/RockdaleGA/BVModules/ProductTemplates/Bvc2013/Product.aspx?productid=SX106-89" target="_blank">here.</a>
+                        </a></div>
+    
+                        </div>
+                    </div>   
+                </div>
+            </div>
+            
+    
+        </div>
+          
+    </div>
+      
         <div class="navbarItem" id="detailsNavbar">
             <div class="navbarText">Details</div>
             <div class="hideText" id="detailsPageInformation">
                 <div class="textContainer">    
-                    <div class="titleText">[Details Page Title]</div>
-                    <div class="subText">[Dummy Text Details Page]:</div>
+                    <div class="titleText">Event Details</div>
+                    <div class="subText">
+                        <div class="subTextHeader">Schedule<br></div>
+                            <i>*Please plan to arrive early for parking*</i><br>
+                            Entry Begins at 8:00am. No new entries will be allowed after 10:00am<br>
+                            Judging starts at 10:30pm<br>
+                            Awards begin at 1:30pm<br>
+                        <div class="subTextHeader">Pricing<br></div>
+                            Vehicle entry: $20 per vehicle<br>
+                            Vendor booths: $40 per booth<br>
+                            Sponsorship cost: $200 per company<br>
+                        <div class="subTextHeader">Location<br></div>
+                            1064 Culpepper Dr SW, Conyers GA
+                    </div>
+                </div>   
+            </div>
+        </div>
+
+        <div class="navbarItem" id="mediaNavbar">
+            <div class="navbarText">Gallery</div>
+            <div class="hideText" id="mediaPageInformation">
+                <div class="textContainer">   
+                    <div class="titleText">Gallery</div>
+                    <div class="subText">
+        
+
+                        <div class="galleryContainer">
+                            <img src="./static/images/car images/new/carshow1.jpg">
+                            <img src="./static/images/car images/new/carshow2.jpg">
+                            <img src="./static/images/car images/new/carshow3.jpg">
+                            <img src="./static/images/car images/new/carshow4.jpg">
+                        </div>
+						
+					</div>
                 </div>   
             </div>
         </div>
@@ -86,8 +215,15 @@
             <div class="navbarText">About</div>
             <div class="hideText" id="aboutPageInformation">
                 <div class="textContainer">    
-                    <div class="titleText">[About Page Title]</div>
-                    <div class="subText">[Dummy Text About Page]: RCA is more than a school...</div>
+                    <div class="titleText">About Us</div>
+                    <div class="subText" id="aboutUs">
+                        Stretch Brandenburg was a longtime business leader in the Rockdale community and owner of multiple automotive companies in the county, including Del Auto Customs  in Honeycreek.  As a respected business leader and skilled technician, he was asked to serve as a founding member of the Rockdale Career Academy faculty and a member of the planning committee which developed the principles and design of RCA.  He went on to sell his shops to begin teaching full time at the Career Academy in 2006 and continued to teach until his death in October of 2019.
+                        <br><br>Stretch loved the students in his automotive program and took incredible pride in their successes.  Mr. B, as his students lovingly called him, was recognized multiple times as a Superintendent Honor Teacher and was a Rockdale Career Academy Teacher of the Year.  During his tenure, he devloped a new automotive restoration program and spent countless hours passing along his love of cars during and outside of class.  He also organized the original series of RCA Car Shows beginning in 2015 as a way to highlight his love of classic cars with his students, his colleagues, and the Rockdale Community. 
+                        <br>Mr. Brandenburg’s love of teaching and commitment to the community lives on is the thousands of students he influenced and his colleagues who cherish the time they taught and learned alongside Stretch.
+                        <br>   
+                        <br>Donate to the RCA automotive program <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fosp.osmsinc.com%2FRockdaleGA%2FBVModules%2FProductTemplates%2FBvc2013%2FProduct.aspx%3Fproductid%3DSX106-VAR6&data=05%7C02%7C9nbuchanan1%40students.rockdale.k12.ga.us%7C0f8dceeb47e14882f7c208dc3c6c0886%7Cbfd25eb83dfc4e5cadabad073f23ac72%7C0%7C0%7C638451681895269282%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=AGHkJyzccPHH668IoI0KiL2JgTMXazlbSnLnK7UxvFM%3D&reserved=0" target="_blank">here.</a>
+                        
+                        </div>
                 </div>   
             </div>
         </div>
@@ -96,27 +232,41 @@
             <div class="navbarText">Home</div>
             <div class="hideText" id="indexPageInformation">
                 <div class="textContainer">    
-                    <div class="titleText">RCA Car Show</div>
-                    <div class="subText">Join us: 1064 Cullpepper Drive<br>[Date], 2024.</div>
-                </div>    
+                    <div class="titleText" id="carShow">Rockdale Career Academy Presents:</div> 
+                    <div class="titleText" id="springIntoSummer">
+                        Spring Into Summer Car Show
+                       
+                    </div>
+                    <div class="titleText" id="hostedBy">Hosted by RCA & Pursing Performance</div>
+                    <div class="titleText"id="info">1064 Culpepper Dr SW, Conyers GA<br>Saturday May 3rd | 9:00am to 4:00pm</div>
+               </div>    
             </div>
         </div>
 
     </div>
 
     <div class="showText" id="indexPage">
-        <div class="textContainer">    
-            <div class="titleText">RCA Car Show</div>
-            <div class="subText">Join us: 1064 Cullpepper Drive<br>May 4-5, 2024.</div>
-        </div>    
+        <div class="textContainer">   
+            <div class="titleText" id="carShow">Rockdale Career Academy Presents:</div> 
+            <div class="titleText" id="springIntoSummer">
+                Spring Into Summer Car Show
+               
+            </div>
+
+            <div class="titleText" id="hostedBy">Hosted by RCA & Pursing Performance</div>
+            <div class="titleText">1064 Culpepper Drive<br>Saturday May 3rd, 2025, 9:00am to 4:00pm</div>
+       </div>     
     </div>
 
+    <!-- <div class="FAQ">   Questions? Contact Talon Owens<br>(towens1@rockdale.k12.ga.us) </div> -->
 
-    <div class="aboutPage">
-        
+
+    <div class="watermark">
+        <br><a href="mailto:Help@RcaCarShow.com">Help@RcaCarShow.com</a>
+        <br>Created By <a href="https://noahbuchanan.me" target="_blank">Noah Buchanan</a>
+        <br>Managed By Ethan Barlay & Mr. Smith
+        <br>© 2025 Rockdale Career Academy
     </div>
-
-    <div class="watermark">Created By <a href="https://noahbuchanan.me" target="_blank">Noah Buchanan</a></div>
 
 </body>
 </html>

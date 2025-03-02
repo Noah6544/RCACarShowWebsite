@@ -1,5 +1,7 @@
 /*from most broad to most specific
-body => individual page classes/id's => specifc tags*/
+body => individual page classes/id's => specifc tags
+or that was the plan anyways, I got lazy and threw them in kinda randomly lol*/
+
 
 :root {
     --font-color: 255, 255, 255;
@@ -14,17 +16,34 @@ body => individual page classes/id's => specifc tags*/
 
 }
 
-@keyframes textReveal{
+body{
+    text-align: left;
+}
+
+@keyframes textReveal{  /* why not just use 'reverse fadeOut forwards'? because display none ruins the absoltue poistionig. */
     from{
         opacity: 0;
-        transform: translateY(-2%);
+        position: translate(-50%,-50%);
+
 
     }
     to{
         opacity: 1;
-        transform: translateY(0%);
+        transform: translate(-50%,-50%);
+
     }
 }
+
+@keyframes fadeOut {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
+
 @keyframes slideDown {
     from{
         opacity: 0;
@@ -71,9 +90,19 @@ body => individual page classes/id's => specifc tags*/
         transform: translateY(100%);
     }
 }
+@keyframes appear {
+	0% {
+		transform: translate(-50%, -50%) scale(0);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+
 
 .loader{
-    z-index: 9999;
+    z-index: -9999;
     background-color: rgb(0, 0, 0);
     display: flex;
     font-size: 20px;
@@ -85,8 +114,16 @@ body => individual page classes/id's => specifc tags*/
     width: 100vw;
     transition: all 1s ease;
     position: absolute;
+    transition: all 2s ease;
+    text-align: center;
 }
+
+.loaderLoaded {
+    animation: fadeOut .5s linear forwards; /* 2, 2.3, 2.6 goign down */
+}
+
 body {
+   
     background-color: black;
     height: 100vh;
     overflow: hidden;
@@ -97,54 +134,74 @@ body {
 
 
 .backgroundGallery {
-    z-index: -1;
     position: absolute;
     display: flex;
     height: 100vh;
-    overflow: none;
-    gap: .1vw;
-    opacity: .34;
+    overflow: hidden;
+    box-shadow: 0px 10px 550px -0px rgba(0, 0, 0, 0.9) inset;
+-webkit-box-shadow:  0px 10px 550px -0px rgba(0, 0, 0, 0.9) inset;
+-moz-box-shadow: 0px 10px 550px -0px rgba(0, 0, 0, 0.9) inset;
 }
 
-
+.galleryContainer {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: auto;
+    max-height: 500px;
+}
+.galleryContainer img {
+    border-radius: 15px;
+    border: 2px solid white;
+    margin: 10px;
+    width: 600px;
+}
 .galleryThird {
     display: flex;
     flex-direction: column;
     gap: .1vw;
     opacity: 0;
     /* for the inital slide animatino, this needs to be down already*/
+   
+
+
+.Column img{
+    filter: blur(.8px);
+    opacity: .45;
+    transition: all .6s ease;
+    box-shadow: 0px 1px 27px -5px rgba(0,0,0,0.9) inset;
+    -webkit-box-shadow: 0px 1px 27px -5px rgba(0,0,0,0.9) inset;
+    -moz-box-shadow: 0px 1px 27px -5px rgba(0,0,0,0.9) inset;
+}
 
 }
+.Column img:hover{
+    opacity: .4;
+}
+
 .galleryThird img{
-    border: .5px solid rgba(255, 255, 255, 0.504);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 1%;
     width: 33.333vw;
-    height: 75vh;
+    height: 65vh;
     object-fit: cover;
 }
 
 .galleryLoaded:nth-child(1){
-    animation: initialReveal 2s 2s cubic-bezier( 0, -0.01, 0.22, 1 ) forwards;
-
+    animation: initialReveal  2s  .25s  cubic-bezier( 0, -0.01, 0.22, 1 ) forwards; /* 2s 1.7s | 1.7s 2s | 2.5s 2.3s */
 }
 .galleryLoaded:nth-child(2){
-    transform: translateY(-300%);
-
-    animation: initialReveal 2s 2.3s cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
-
+    animation: initialReveal 1.7s .5s  cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
 }
 .galleryLoaded:nth-child(3){
-    animation: initialReveal 1.2s 2.6s cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
-}
-#leftGallery {
+    animation: initialReveal 2.5s .75s cubic-bezier( 0, -0.01, 0.22,1 ) forwards;
 }
 
 #middleGallery {
-}
-
-#rightGallery{
+    align-self: flex-end; /*instead of having all of that translatey-300% and stuff, this is juat position aboslute; bottom: 0, essentially but with flexbox!*/
 
 }
-
 
 #leftGallery > *{ /* selcting both first and second column*/
     display: flex;
@@ -154,14 +211,15 @@ body {
 }
 #middleGallery > *{ /* selcting both first and second column*/
     display: flex;
+
     flex-direction: column;
-    animation: gallerySlideDown 200s 1.7s linear infinite;
+    animation: gallerySlideDown 200s .2s linear infinite; /* 12s, 200s, 220s */
 
 }
 #rightGallery > *{ /* selcting both first and second column*/
     display: flex;
     flex-direction: column;
-    animation: gallerySlideUp 220s 1s linear infinite;
+    animation: gallerySlideUp 220s .4s linear infinite;
 }
 
 .navbar{
@@ -176,75 +234,230 @@ body {
     font-size: 20px;
     align-items: center;
     justify-content: space-evenly;
-    font-family: sans-serif;
-    /* box-shadow: 0px 0px 10px black; */
+    font-family: "Montserrat", Impact, sans-serif;
+    font-style: italic;
+    font-weight: 100;
+    background-color: rgba(0, 0, 0, 0.651);
+    box-shadow: 0px 5px 15px 15px rgba(0, 0, 0, 0.651);
 
 }
+
 .navbarItem {
     transform: translateY(-300%);
     text-shadow: 0px 3px 5px black;
-
+    transition: all .25s ease;
+    padding: 10px;
+    border-radius: 20px;
+    opacity: 0;
 }
-.navbarLoaded .navbarItem:nth-child(1){
-    animation: slideDown 2s 5s forwards;
-}
-.navbarLoaded .navbarItem:nth-child(2){
-    animation: slideDown 2s 5.1s forwards;
-}
-.navbarLoaded .navbarItem:nth-child(3){
-    animation: slideDown 2s 5.2s forwards;
-}
-.navbarLoaded .navbarItem:nth-child(4){
-    animation: slideDown 2s 5.4s forwards;
-}
-
-
 
 .navbarItem:hover {
+    color: rgba(255, 255, 255, 0.5); /* for some reason the opacity isn't working, using rgba to control alpha */
     cursor: pointer;
-    text-shadow: 0px 3px 5px black;
 }
 
+#registerNavbar:hover .dropdown{
+    color: rgba(255, 255, 255, 1); /* for some reason the opacity isn't working, using rgba to control alpha */
+    opacity: 1; 
+    display: flex;
+    transition: all .25s ease;
+    pointer-events: all;
+}
+
+#registerNavbar:hover .dropdownIconWrapper{
+    opacity: .4;
+    transition: all .25s ease;
+    transform-origin: center center;
+    transform: scale(90%);
+}
+
+.navbarLoaded .navbarItem:nth-child(1){
+    animation: slideDown 2s .5s forwards; /* 5 +0,1  delay, 2s duratoin*/
+}
+.navbarLoaded .navbarItem:nth-child(2){
+    animation: slideDown 2s .7s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(3){
+    animation: slideDown 2s .9s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(4){
+    animation: slideDown 2s 1.2s forwards;
+}
+.navbarLoaded .navbarItem:nth-child(5){
+    animation: slideDown 2s 1.4s forwards;
+}
+
+.paymentOptionsContainer{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.paymentOption {
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.227);
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 10px rgba(131, 131, 131, 0.204);
+
+}
+
+.paymentOptionSelected{
+    background: rgba(255, 255, 255, 0.113);
+
+}
+
+#vehicleRegisterNavbar, #vendorRegisterNavbar{
+    white-space: break-word;
+    position: relative;
+    padding-left: 0px;
+    width: 220px;
+}
+
+#registerNavbarButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+
 .showText {
+    position: absolute;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: auto;
+
     opacity: 0;
-    align-items: center;
-    justify-content: center;
     -webkit-font-smoothing: antialiased;
     transition: all 1s ease;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 mark {
     background-color: black ;
 }
 .textLoaded {
-    animation: textReveal 2s 4s forwards; 
+    animation: textReveal 2s .25s forwards; /* 2s 4s/6s before */
 }
 
 .hideText {display: none;}
 
+
 .titleText{
-    font-size: 90px;
+    width: clamp(200px, 75vw, 750px);
+    font-size: 35px;
+    padding: 10px;
     color: white;
-    display:flex;
-    font-family: "Montserrat",Impact, sans-serif;
-    font-weight: 600;
+    display: flex;
+    font-family: "Montserrat", Impact, sans-serif;
+    font-weight: 400;
     font-style: italic;
-    font-optical-sizing: auto;
-    text-shadow: 0px 5px 2px rgba(0, 3, 4, 0.611);
+    justify-content: center;
+    text-align: center;
+    
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.377);
 }
+#springIntoSummer {
+    display: flex;
+    flex-direction: column;
+    font-size: 45px;
+    font-style: normal;
+    font-family: "Montserrat", Impact, sans-serif;
+    font-weight: 500;
+    align-items: center;
+    text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.412);
+
+
+}
+#hostedBy{
+    font-size: 25px;
+    font-weight: 100;
+
+}
+#carShow {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#carShow img{
+    rotate: 5deg;
+}
+.textContainer {
+    display: flex;
+    padding: 50px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+    font-family: sans-serif;
+    box-shadow: 0px 10px 55px -10px rgba(0, 0, 0, 0.9);
+    border-radius: 50px;
+    background-color: rgba(122, 122, 122, 0.032);
+    font-size: 17px;
+}
+
 
 .subText{
-    font-size: 25px;
+    width: clamp(200px, 75vw, 750px);
     color: white;
     font-family: sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif, Helvetica, sans-serif;
-    text-align: center;
-    text-shadow: 0px 5px 2px rgba(0, 0, 0, 0.33);
+    text-shadow: var(--text-shadow);
+    /* text-shadow: 0px 5px 2px rgba(0, 0, 0, 0.33); */
+  
+}
+#aboutUs {
+    text-align: left !important;
+
+    width: clamp(300px, 85vw, 950px);
+    line-height: 120%;
 
 }
 
+.subTitleText {
+    color: white;
+    padding: 5px;
+    font-family: sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif, Helvetica, sans-serif;
+}
+
+.subTextHeader {
+    font-size: 22px;
+    padding: 20px;
+
+}
+
+.dropdown{
+    display: flex;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%,0);
+    gap: 10px;
+    opacity: 0;
+    transition: all 2s ease;
+    pointer-events: none; /*since we can't do display none, we still don't want to be able to hover it.*/
+}
+#registerList {
+    text-align: left;
+}
+
+#indexPage .subText {
+    text-align: center;
+}
+
+#indexPage {
+}
 
 .watermark{
     position: absolute;
@@ -252,9 +465,9 @@ mark {
     padding: 10px;
     color: white;
     font-family: sans-serif;
-    font-size: 12px
-    
-
+    font-size: 12px;
+    animation: reverse fadeOut 2s 2s linear forwards;
+    opacity: 0;
 }
 
 a{
@@ -268,3 +481,61 @@ a:hover{
     cursor: pointer;
 }
 
+ul { 
+    list-style: none;
+}
+
+
+
+.FAQ {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    padding: 10px;
+    text-shadow: 0px 2px 15px rgb(0, 0, 0);
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    opacity: 0;
+    animation: reverse fadeOut 2s 7s linear forwards;
+
+    
+}
+
+a{
+    color: rgb(132, 182, 234)
+}
+
+/*ARROW STUFF*/
+.dropdownIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(60%);
+    height: 15px; 
+    transition: all .25s ease;
+}
+.dropdownRectangle {
+    width: 12px; 
+    height: 1px;
+    background-color: rgb(252, 252, 252);
+    border-radius: 20px;
+    position: absolute;
+}
+#leftRectangle{
+    rotate: 45deg;
+    transform: translate(-50%, 30%);
+}
+#rightRectangle{
+    rotate: -45deg;
+    transform: translate(50%,30%);
+}
+.dropdownIconWrapper{ 
+    padding: 22px 0px 15px 15px; /* top | right | bottom | left */
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    transition: all .25s ease;
+}
